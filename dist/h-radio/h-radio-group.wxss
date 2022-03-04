@@ -1,0 +1,5 @@
+/* h-components/h-radio/h-radio-group.wxss */
+.h-radio-group {
+  display: flex;
+  align-items: center;
+}

@@ -1,0 +1,18 @@
+<!--components/h-nav/h-nav.wxml-->
+<view wx:if="{{ placeholder }}" style="height: {{ height }}px;"></view>
+<view class="h-nav" style="height: {{ height }}px;">
+  <view class="h-nav__bg">
+    <slot name="background"></slot>
+  </view>
+  <view class="h-nav__content"
+    style="padding:{{padding.top}}px {{padding.right}}px {{padding.bottom}}px {{padding.left}}px">
+    <view class="h-nav__left">
+      <slot name="left"></slot>
+    </view>
+    <view class="h-nav__center">
+      <view wx:if="{{ title }}" class="h-nav__title">{{ title }}</view>
+      <slot wx:else="" name="title"></slot>
+    </view>
+  </view>
+  <view wx:if="{{ border }}" class="h-nav__border-bottom"></view>
+</view>

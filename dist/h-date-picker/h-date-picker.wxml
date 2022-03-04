@@ -1,0 +1,18 @@
+<!--h-components/h-date-picker/h-date-picker.wxml-->
+
+<picker-view
+  class="h-date-picker"
+  value="{{ date }}"
+  bindchange="onDateChange"
+  indicator-style="height: 45px;"
+>
+  <picker-view-column class="col-year">
+    <view wx:for="{{ years }}" wx:key="index" class="item-year">{{ item }}</view>
+  </picker-view-column>
+  <picker-view-column class="col-month">
+    <view wx:for="{{ months }}" wx:key="index" class="item-month">{{ item }}</view>
+  </picker-view-column>
+  <picker-view-column class="col-day">
+    <view wx:for="{{ days }}" wx:key="index" class="item-day">{{ item }}</view>
+  </picker-view-column>
+</picker-view>

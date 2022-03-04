@@ -1,0 +1,10 @@
+<!--h-components/h-rate/h-rate.wxml-->
+<view class="h-rate">
+  <image wx:for="{{ 5 }}" wx:key="index" mode="aspectFit"
+    data-value="{{ item+1 }}"
+    src="{{ item+1 > current ? iconDeactive : iconActive }}"
+    class="h-rate__star"
+    style="width:{{ width }}rpx; height:{{ height }}rpx; margin-left:{{ index > 0 ? spacing : 0 }}rpx;"
+    bindtap="onTap"
+  ></image>
+</view>

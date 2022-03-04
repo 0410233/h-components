@@ -1,0 +1,8 @@
+<!--components/h-avatar/h-avatar.wxml-->
+<view class="h-avatar">
+  <view class="h-avatar__avatar" style="{{ avatarSize }}">
+    <image src="{{ avatar }}" class="h-avatar__photo" mode="aspectFill"></image>
+    <c-icon wx:if="{{ showSex }}" name="{{ sexName }}" class="h-avatar__sex"></c-icon>
+  </view>
+  <text wx:if="{{ showName }}" class="h-avatar__name">{{ user.name }}</text>
+</view>

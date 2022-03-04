@@ -1,0 +1,7 @@
+<!--components/h-tabs/h-tab.wxml-->
+<view class="h-tab {{ isCurrent ? 'is-active' : '' }}"
+  style="{{ style }}"
+  bindtap="onTap"
+>
+  <slot></slot>
+</view>

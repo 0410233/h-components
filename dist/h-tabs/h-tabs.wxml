@@ -1,0 +1,17 @@
+<!--components/tabs/tabs.wxml-->
+<view class="h-tabs" style="{{ listStyle }}">
+  <scroll-view
+    scroll-x="{{ true }}"
+    scroll-left="{{ scrollLeft }}"
+    scroll-with-animation="{{ true }}"
+    class="h-tabs__scroll"
+  >
+    <view class="h-tabs__wrapper">
+      <view wx:if="{{ underline }}"
+        class="h-tabs__line"
+        style="transform: translateX({{ lineOffset }}px);"
+      ></view>
+      <slot></slot>
+    </view>
+  </scroll-view>
+</view>

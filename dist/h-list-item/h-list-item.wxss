@@ -1,0 +1,18 @@
+/* components/h-list-item/h-list-item.wxss */
+.h-list-item {
+  display: flex;
+  align-items: center;
+}
+
+.h-list-item:active {
+  opacity: 0.85;
+}
+
+.h-list-item__value {
+  margin-left: auto;
+  color: #666666;
+}
+
+.h-list-item__icon {
+  margin-left: 16rpx;
+}

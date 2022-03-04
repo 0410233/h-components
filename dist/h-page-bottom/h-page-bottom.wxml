@@ -1,0 +1,5 @@
+<!--h-components/h-page-bottom/h-page-bottom.wxml-->
+<view wx:if="{{ placeholder }}" class="h-page-bottom-placeholder" style="height:{{ height }}px"></view>
+<view class="h-page-bottom" style="padding-bottom:{{ safeAreaInsetBottom }}px;">
+  <slot></slot>
+</view>

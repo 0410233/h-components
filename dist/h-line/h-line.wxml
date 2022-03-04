@@ -1,0 +1,2 @@
+<!--h-components/h-line/h-line.wxml-->
+<view class="h-line" style="{{ style }}"></view>

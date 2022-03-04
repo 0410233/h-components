@@ -1,0 +1,30 @@
+/* components/tabs/tabs.wxss */
+.h-tabs {
+  position: relative;
+}
+
+.h-tabs__scroll {
+  width: 100%;
+  height: 100%;
+}
+
+.h-tabs__wrapper {
+  min-width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: stretch;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.h-tabs__line {
+  position: absolute;
+  bottom: 0;
+  width: 50rpx;
+  height: 4rpx;
+  margin: 0 -25rpx;
+  border-radius: 4rpx;
+  background: #87CEF6;
+  transition: transform .3s;
+  z-index: 2;
+}

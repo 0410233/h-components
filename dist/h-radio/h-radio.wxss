@@ -1,0 +1,32 @@
+/* h-components/h-radio/h-radio.wxss */
+.h-radio {
+  display: flex;
+  align-items: center;
+}
+
+.h-radio--icon-right {
+  flex-direction: row-reverse;
+}
+
+.h-radio--icon-top {
+  flex-direction: column;
+}
+
+.h-radio--icon-bottom {
+  flex-direction: column-reverse;
+}
+
+.h-radio__icon {
+  width: 28rpx;
+  height: 28rpx;
+}
+
+.h-radio__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.h-radio__label {
+  font-size: 28rpx;
+}

@@ -1,0 +1,23 @@
+/* components/h-tabs/h-tab.wxss */
+
+.h-tab {
+  width: 100%;
+  min-width: 0;
+  height: 100%;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 30rpx;
+  color: #666666;
+  box-sizing: border-box;
+}
+
+.h-tab.is-active {
+  color: #333333;
+  font-size: 32rpx;
+  font-weight: 500;
+}

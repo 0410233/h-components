@@ -1,0 +1,26 @@
+/* components/h-avatar/h-avatar.wxss */
+.h-avatar {
+  display: flex;
+  align-items: center;
+}
+
+.h-avatar__avatar {
+  position: relative;
+}
+
+.h-avatar__photo {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: #142857;
+}
+
+.h-avatar__sex {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.h-avatar__name {
+  margin-left: 16rpx;
+}

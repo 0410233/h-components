@@ -1,0 +1,4 @@
+<!--h-components/h-radio/h-radio-group.wxml-->
+<view class="h-radio-group" style="{{ style }}">
+  <slot></slot>
+</view>

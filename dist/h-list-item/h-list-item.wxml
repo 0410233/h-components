@@ -1,0 +1,15 @@
+<!--components/h-list-item/h-list-item.wxml-->
+<view class="h-list-item {{ classList }}" style="{{ style }}" bindtap="onTap">
+  <view class="h-list-item__title">
+    <text wx:if="{{ title }}">{{ title }}</text>
+    <slot wx:else name="title"></slot>
+  </view>
+  <view class="h-list-item__value">
+    <text wx:if="{{ value }}">{{ value }}</text>
+    <slot wx:else name="value"></slot>
+  </view>
+  <image wx:if="{{ icon }}" src="{{ icon }}" mode="aspectFit" class="h-list-item__icon" style="{{ iconStyle }}"></image>
+  <view wx:else class="h-list-item__icon">
+    <slot name="icon"></slot>
+  </view>
+</view>

@@ -1,0 +1,19 @@
+/* h-components/h-bg-box/h-bg-box.wxss */
+.h-bg-box {
+  position: relative;
+}
+
+.h-bg-box__bg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+
+.h-bg-box__body {
+  position: relative;
+  z-index: 1;
+}

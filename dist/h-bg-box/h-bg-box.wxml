@@ -1,0 +1,5 @@
+<!--h-components/h-bg-box/h-bg-box.wxml-->
+<view class="h-bg-box" style="{{ style }}">
+  <image src="{{ bg }}" class="h-bg-box__bg" mode="aspectFill"></image>
+  <view class="h-bg-box__body"><slot></slot></view>
+</view>

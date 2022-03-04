@@ -1,0 +1,10 @@
+<!--h-components/h-checkbox/h-checkbox.wxml-->
+<view class="h-checkbox h-checkbox--icon-{{ iconPosition }}" style="{{ style }}" bindtap="toggle">
+  <view class="h-checkbox__icon" style="{{ iconStyle }}">
+    <image wx:if="{{ isChecked }}" src="{{ checkedIcon }}" mode="aspectFit"
+    class="h-checkbox__image"></image>
+    <image wx:else src="{{ uncheckedIcon }}" mode="aspectFit"
+      class="h-checkbox__image"></image>
+  </view>
+  <view class="h-checkbox__label" style="{{ labelStyle }}"><slot></slot></view>
+</view>
