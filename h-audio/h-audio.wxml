@@ -2,7 +2,7 @@
 <wxs src="../../utils/time.wxs" module="time"></wxs>
 
 <view class="h-audio">
-  <view class="audio__btn" bindtap="togglePlay">
+  <view wx:if="{{ audio }}" class="audio__btn" bindtap="togglePlay">
     <h-icon wx:if="{{ isPlaying }}"
       src="/images/icon-pause-white.png"
       size="20 26"
@@ -15,11 +15,11 @@
   <text class="text-white font-22 ml-5">{{ time.formatSeconds(currentTime/1000) }}</text>
   <slider
     min="0"
-    value="{{ currentTime }}"
     max="{{ duration }}"
+    value="{{ currentTime }}"
     background-color="#CACACA"
     active-color="#87CEF6"
-    block-size="8"
+    block-size="12"
     block-color="#87CEF6"
     class="audio__slider"
     bindchange="onProgressChanged"

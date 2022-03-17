@@ -13,7 +13,7 @@ export default Behavior({
     isPlaying: false,
     currentTime: 0,
     duration: 0,
-    _audio: null,
+    audio: null,
   },
 
   observers: {
@@ -51,17 +51,23 @@ export default Behavior({
         const audio = wx.createInnerAudioContext();
         audio.src = src;
 
-        audio.onWaiting(() => {
-          if (this.data.isPlaying) {
-            audio.pause();
-          }
-        });
+        // audio.offWaiting();
+        // audio.onWaiting(() => {
+        //   console.log('onWaiting')
+        //   if (this.data.isPlaying) {
+        //     console.log('onWaiting.pause')
+        //     audio.pause();
+        //   }
+        // });
 
-        audio.onCanplay(() => {
-          if (this.data.isPlaying) {
-            audio.play();
-          }
-        });
+        // audio.offCanplay();
+        // audio.onCanplay(() => {
+        //   console.log('onCanplay')
+        //   if (this.data.isPlaying) {
+        //     console.log('onCanplay.play')
+        //     audio.play();
+        //   }
+        // });
 
         audio.onTimeUpdate(() => {
           this.setData({
@@ -72,13 +78,14 @@ export default Behavior({
         audio.onEnded(() => {
           this.stop();
         });
-  
+
         const timer = setInterval(() => {
           if (audio.duration > 0) {
             clearInterval(timer);
+            audio.seek(0);
             this.setData({
               duration: audio.duration * 1000,
-              _audio: audio,
+              audio: audio,
             });
             resolve(audio);
           }
@@ -87,7 +94,7 @@ export default Behavior({
     },
 
     destroy() {
-      const audio = this.data._audio;
+      const audio = this.data.audio;
       if (audio) {
         audio.stop();
         audio.destroy();
@@ -96,29 +103,23 @@ export default Behavior({
     },
 
     play() {
-      if (this.data.isPlaying) {
-        return;
-      }
-      this.setData({isPlaying: true});
-      const audio = this.data._audio;
+      const audio = this.data.audio;
       if (audio) {
+        this.setData({isPlaying: true});
         audio.play();
       }
     },
 
     pause() {
-      if (!this.data.isPlaying) {
-        return;
-      }
-      this.setData({isPlaying: false});
-      const audio = this.data._audio;
+      const audio = this.data.audio;
       if (audio) {
+        this.setData({isPlaying: false});
         audio.pause();
       }
     },
 
     stop() {
-      const audio = this.data._audio;
+      const audio = this.data.audio;
       if (audio) {
         audio.stop();
       }
@@ -130,9 +131,26 @@ export default Behavior({
     },
 
     seek(time) {
-      this.setData({currentTime: time});
-      const audio = this.data._audio;
+      const audio = this.data.audio;
       if (audio) {
+        this.setData({currentTime: time});
+
+        // const pause = () => {
+        //   console.log('pause')
+        //   audio.pause()
+        // };
+        // const play = () => {
+        //   console.log('play')
+        //   audio.offWaiting(pause);
+        //   audio.offCanplay(play);
+        //   audio.play();
+        // };
+        
+        // audio.onCanplay(play);
+        // audio.onWaiting(pause);
+        
+        // audio.seek(time / 1000);
+
         audio.seek(time / 1000);
       }
     },
@@ -147,11 +165,15 @@ export default Behavior({
 
     onProgressChanged(e) {
       this.seek(e.detail.value);
+      const audio = this.data.audio;
+      if (audio && this.data.isPlaying) {
+        audio.play();
+      }
     },
 
     onProgressChanging(e) {
       // console.log('onProgressChanging', e)
-      const audio = this.data._audio;
+      const audio = this.data.audio;
       if (audio) {
         audio.pause();
       }
