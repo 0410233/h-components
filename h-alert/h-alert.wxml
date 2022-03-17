@@ -1,0 +1,16 @@
+<!--h-components/h-alert/h-alert.wxml-->
+<h-popup
+  visible="{{ innerVisible }}"
+  close-on-click-overlay="{{ false }}"
+  custom-style="justify-content:center"
+>
+  <view class="h-alert">
+    <slot name="title"></slot>
+    <slot name="content"></slot>
+    <slot wx:if="{{ hideConfirm && hideCancel }}" name="bottom"></slot>
+    <view wx:else class="flex items-center mt-auto">
+      <view class="h-alert__cancel" catchtap="cancel">{{ cancelText }}</view>
+      <view class="h-alert__confirm" catchtap="confirm">{{ confirmText }}</view>
+    </view>
+  </view>
+</h-popup>

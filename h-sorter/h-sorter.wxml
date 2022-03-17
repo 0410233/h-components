@@ -1,0 +1,8 @@
+<!--h-components/h-sorter/h-sorter.wxml-->
+<view class="h-sorter" bindtap="toggle">
+  <text class="h-sorter__label">{{ label }}</text>
+  <view class="h-sorter__indicator">
+    <view class="h-sorter__asc {{ status==1 ? 'is-active' : '' }}"></view>
+    <view class="h-sorter__desc {{ status==2 ? 'is-active' : '' }}"></view>
+  </view>
+</view>

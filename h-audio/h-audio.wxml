@@ -1,0 +1,29 @@
+<!--components/h-audio/h-audio.wxml-->
+<wxs src="../../utils/time.wxs" module="time"></wxs>
+
+<view class="h-audio">
+  <view class="audio__btn" bindtap="togglePlay">
+    <h-icon wx:if="{{ isPlaying }}"
+      src="/images/icon-pause-white.png"
+      size="20 26"
+    ></h-icon>
+    <h-icon wx:else
+      src="/images/icon-play-white.png"
+      size="22 32"
+    ></h-icon>
+  </view>
+  <text class="text-white font-22 ml-5">{{ time.formatSeconds(currentTime/1000) }}</text>
+  <slider
+    min="0"
+    value="{{ currentTime }}"
+    max="{{ duration }}"
+    background-color="#CACACA"
+    active-color="#87CEF6"
+    block-size="8"
+    block-color="#87CEF6"
+    class="audio__slider"
+    bindchange="onProgressChanged"
+    bindchanging="onProgressChanging"
+  />
+  <text class="text-white font-22 ml-5">{{ time.formatSeconds(duration/1000) }}</text>
+</view>

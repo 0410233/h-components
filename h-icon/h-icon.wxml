@@ -1,0 +1,2 @@
+<!--h-components/h-icon/h-icon.wxml-->
+<image src="{{ src }}" mode="aspectFit" class="h-icon" style="{{ style }}"></image>

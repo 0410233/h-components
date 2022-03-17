@@ -1,0 +1,9 @@
+<!--h-components/h-popup/h-popup.wxml-->
+<view wx:if="{{ show }}" class="h-popup"
+  style="{{ customStyle }}"
+  catchtap="onOverlayClick"
+>
+  <view class="h-popup--content-wrapper" catchtap="noop">
+    <slot></slot>
+  </view>
+</view>

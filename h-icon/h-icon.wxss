@@ -1,0 +1,4 @@
+/* h-components/h-icon/h-icon.wxss */
+.h-icon {
+  display: block;
+}

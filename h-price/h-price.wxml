@@ -1,0 +1,5 @@
+<!--h-components/h-price/h-price.wxml-->
+<view class="h-price">
+  <text class="h-price__symbol">{{ symbol }}</text>
+  <text class="h-price__price">{{ price }}</text>
+</view>

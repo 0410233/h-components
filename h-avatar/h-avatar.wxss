@@ -1,0 +1,5 @@
+/* components/h-avatar/h-avatar.wxss */
+.h-avatar {
+  display: block;
+  background: #e8e8e8;
+}

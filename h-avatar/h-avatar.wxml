@@ -1,0 +1,2 @@
+<!--components/h-avatar/h-avatar.wxml-->
+<image src="{{ src }}" mode="aspectFill" class="h-avatar" style="{{ style }}"></image>

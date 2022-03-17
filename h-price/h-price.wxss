@@ -1,0 +1,5 @@
+/* h-components/h-price/h-price.wxss */
+.h-price {
+  display: inline-flex;
+  align-items: baseline;
+}
