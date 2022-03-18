@@ -1,6 +1,6 @@
 <!--components/h-nav/h-nav.wxml-->
 <view wx:if="{{ placeholder }}" style="height: {{ height }}px;"></view>
-<view class="h-nav" style="height: {{ height }}px;">
+<view class="h-nav" style="height: {{ height }}px; {{ customStyle }}">
   <view class="h-nav__bg">
     <slot name="background"></slot>
   </view>

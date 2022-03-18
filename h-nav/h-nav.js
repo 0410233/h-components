@@ -22,6 +22,8 @@ Component({
       type: Boolean,
       value: true,
     },
+
+    customStyle: String,
   },
 
   /**
