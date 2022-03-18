@@ -1,4 +1,4 @@
 <!--h-components/h-checkbox/h-checkbox-group.wxml-->
-<view class="h-checkbox-group" style="{{ style }}">
+<view class="h-checkbox-group" style="{{ customStyle }}">
   <slot></slot>
 </view>

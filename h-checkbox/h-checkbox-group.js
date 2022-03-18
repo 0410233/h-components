@@ -10,22 +10,15 @@ Component({
     },
   },
 
-  options: {
-    pureDataPattern: /^_/,
-  },
-
   /**
    * 组件的属性列表
    */
   properties: {
-    value: {
-      type: Array,
-      observer: 'update',
-    },
-    justify: {
-      type: String,
-      value: 'flex-start',
-      observer: 'updateStyle',
+    value: Array,
+    customStyle: String,
+    disabled: {
+      type: Boolean,
+      value: false,
     },
   },
 
@@ -33,9 +26,17 @@ Component({
    * 组件的初始数据
    */
   data: {
-    style: 'justify-content: flex-start',
     _value: [],
     _children: [],
+  },
+
+  observers: {
+    'value': function(value) {
+      if (!Array.isArray(value) || this.isEqualArray(value, this.data._value)) {
+        return;
+      }
+      this.changeValue(value);
+    }
   },
 
   /**
@@ -46,64 +47,55 @@ Component({
       this.data._children.push(child);
     },
 
-    update() {
-      if (! this.isChanged()) {
-        return;
-      }
-
-      const value = this.properties.value || [];
-
-      this.setData({
-        _value: value.slice(),
-      }, () => {
-        this.data._children.forEach(child => {
-          if (value.indexOf(child.properties.value) >= 0) {
-            child.check();
-          } else {
-            child.uncheck();
-          }
-        });
-      });
-    },
-
-    updateStyle() {
-      const map = {
-        'start': 'flex-start',
-        'flex-start': 'flex-start',
-        'end': 'flex-end',
-        'flex-end': 'flex-end',
-        'center': 'center',
-        'between': 'space-between',
-        'space-between': 'space-between',
-        'around': 'space-around',
-        'space-around': 'space-around',
-        'evenly': 'space-evenly',
-        'space-evenly': 'space-evenly',
-      };
-      this.setData({
-        style: 'justify-content:' + (map[this.properties.justify] || 'flex-start'),
-      });
-    },
-
-    isChanged() {
-      const value = this.properties.value || [];
-      const current = this.data._value || [];
-      for (let i = 0; i < value.length; i++) {
-        if (current.indexOf(value[i] < 0)) {
-          return true;
+    /**
+     * 比较两个数组元素是否相同
+     * @param {Array} value 
+     */
+    changeValue(value) {
+      this.setData({_value: value});
+      this.data._children.forEach(child => {
+        const childValue = child.properties.value;
+        if (value.findIndex(val => val == childValue) >= 0) {
+          child.check();
+        } else {
+          child.uncheck();
         }
-      }
-      return false;
+      });
     },
 
-    changeValue() {
+    /**
+     * h-checkbox 点击
+     */
+    handleCheckboxTap() {
       const value = [];
       this.data._children.forEach(child => {
         if (child.data.isChecked) {
           value.push(child.properties.value)
         }
       });
+      this.setData({_value: value});
       this.triggerEvent('change', {value});
+    },
+
+    /**
+     * 比较两个数组元素是否相同
+     * @param {Array} a1 
+     * @param {Array} a2 
+     * @returns {Boolean}
+     */
+    isEqualArray(a1, a2) {
+      if (a1 === a2) {
+        return true;
+      }
+      if (a1.length != a2.length) {
+        return false;
+      }
+      for (let i = 0; i < a1.length; i++) {
+        for (let j = 0; j < a2.length; j++) {
+          if (a1[i] != a2[j]) return false;
+        }
+      }
+      return true;
     },
   },
 });

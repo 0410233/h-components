@@ -1,10 +1,5 @@
 // h-components/h-checkbox/h-checkbox.js
 Component({
-  options: {
-    pureDataPattern: /^_/,
-    multipleSlots: true,
-  },
-
   relations: {
     './h-checkbox-group': {
       type: 'parent',
@@ -62,6 +57,11 @@ Component({
       type: String,
       value: '0',
       observer: 'computeStyle',
+    },
+
+    disabled: {
+      type: Boolean,
+      value: false,
     },
   },
 
@@ -162,9 +162,12 @@ Component({
     },
 
     toggle() {
+      if (this.properties.disabled || this.data._parent.properties.disabled) {
+        return;
+      }
       const isChecked = !this.data.isChecked;
       this.setData({isChecked}, () => {
-        this.data._parent.changeValue();
+        this.data._parent.handleCheckboxTap();
       });
     },
   }
