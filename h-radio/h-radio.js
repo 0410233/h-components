@@ -59,6 +59,11 @@ Component({
       value: '0',
       observer: 'computeStyle',
     },
+
+    disabled: {
+      type: Boolean,
+      value: false,
+    },
   },
 
   /**
@@ -158,12 +163,15 @@ Component({
     },
 
     onTap() {
+      if (this.properties.disabled || this.data._parent.properties.disabled) {
+        return;
+      }
       if (this.data.isChecked) {
         return;
       }
       this.check();
       if (this.data._parent) {
-        this.data._parent.check(this.properties.value);
+        this.data._parent.handleRadioTap(this);
       }
     },
   },

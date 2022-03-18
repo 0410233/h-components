@@ -15,9 +15,10 @@ Component({
    */
   properties: {
     value: null,
-    justify: {
-      type: String,
-      value: 'flex-start',
+    customStyle: String,
+    disabled: {
+      type: Boolean,
+      value: false,
     },
   },
 
@@ -25,26 +26,15 @@ Component({
    * 组件的初始数据
    */
   data: {
-    style: 'justify-content: flex-start',
     _selected: null,
     _children: [],
   },
 
   observers: {
     'value': function(val) {
-      // console.log('h-radio-group.observers.value');
       if (val != this.data._selected) {
         this.changeValue(val);
       }
-    },
-    'justify': function() {
-      this.updateStyle();
-    },
-  },
-
-  lifetimes: {
-    ready() {
-      this.checkChildren();
     },
   },
 
@@ -54,56 +44,31 @@ Component({
   methods: {
     addChild(child) {
       this.data._children.push(child);
-    },
-
-    updateStyle() {
-      const map = {
-        'start': 'flex-start',
-        'flex-start': 'flex-start',
-        'end': 'flex-end',
-        'flex-end': 'flex-end',
-        'center': 'center',
-        'between': 'space-between',
-        'space-between': 'space-between',
-        'around': 'space-around',
-        'space-around': 'space-around',
-        'evenly': 'space-evenly',
-        'space-evenly': 'space-evenly',
-      };
-      this.setData({
-        style: 'justify-content:' + (map[this.properties.justify] || 'flex-start'),
-      });
-    },
-
-    check(value) {
-      // console.log('h-radio-group.check');
-      this.changeValue(value).then(() => {
-        this.triggerEvent('change', {value});
-      });
+      const value = child.properties.value;
+      if (value == this.properties.value) {
+        this.data._selected = value;
+        child.check();
+      }
     },
 
     changeValue(value) {
-      // console.log('h-radio-group.changeValue');
-      return new Promise(resolve => {
-        this.setData({
-          _selected: value,
-        }, () => {
-          this.checkChildren();
-          resolve(value);
-        });
+      console.log('h-radio-group.changeValue', value);
+      this.setData({_selected: value});
+      this.data._children.forEach(child => {
+        if (child.properties.value == value) {
+          child.check();
+        } else {
+          child.uncheck();
+        }
       });
     },
 
-    checkChildren() {
-      // console.log('h-radio-group.checkChildren');
-      const value = this.data._selected;
-      this.data._children.forEach(child => {
-        if (child.properties.value != value) {
-          child.uncheck();
-        } else {
-          child.check();
-        }
-      });
+    // h-radio 点击
+    handleRadioTap(child) {
+      // console.log('h-radio-group.check');
+      const value = child.properties.value;
+      this.changeValue(value);
+      this.triggerEvent('change', {value});
     },
   },
 });

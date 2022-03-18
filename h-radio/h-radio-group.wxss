@@ -2,4 +2,5 @@
 .h-radio-group {
   display: flex;
   align-items: center;
+  justify-content: flex-start;
 }
