@@ -45,6 +45,10 @@ Component({
   methods: {
     addChild(child) {
       this.data._children.push(child);
+      const value = this.properties.value;
+      if (value.findIndex(x => x == child.properties.value) >= 0) {
+        child.check();
+      }
     },
 
     /**
