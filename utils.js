@@ -155,3 +155,18 @@ export function getCurrentPage() {
   const pages = getCurrentPages();
   return pages[pages.length - 1];
 }
+
+export function toCall(account,type,title) {
+  getApp().globalData.netcall.call({
+    userId: account,
+    type: type,
+    title:title,
+    attachment: { call: "testValue" },
+    success: (res) => {
+      console.log("==call 成功回调", res)
+    },
+    fail: (err) => {
+      console.log("==call 失败回调", err)
+    }
+  })
+}
