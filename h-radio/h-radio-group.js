@@ -52,7 +52,7 @@ Component({
     },
 
     changeValue(value) {
-      console.log('h-radio-group.changeValue', value);
+      // console.log('h-radio-group.changeValue', value);
       this.setData({_selected: value});
       this.data._children.forEach(child => {
         if (child.properties.value == value) {

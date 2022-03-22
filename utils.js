@@ -150,3 +150,8 @@ export function objectToStyle(obj) {
   }
   return style.join(';');
 }
+
+export function getCurrentPage() {
+  const pages = getCurrentPages();
+  return pages[pages.length - 1];
+}

@@ -1,6 +1,5 @@
 <!--components/h-page/h-page.wxml-->
-<view class="h-page h-page--{{ page }}" style="{{ style }}">
-  <view wx:if="{{ navbarBorder }}" class="navbar-border"></view>
+<view wx:if="{{ navbarBorder }}" class="navbar-border"></view>
+<view class="h-page h-page--{{ name || page || '' }}" style="{{ customStyle }}">
   <slot></slot>
-  <view wx:if="{{ tabbarBorder }}" class="tabbar-border"></view>
 </view>
