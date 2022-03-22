@@ -4,7 +4,7 @@ Component({
    * 组件的属性列表
    */
   properties: {
-    price: Number,
+    price: null,
     symbol: {
       type: String,
       value: '￥',
@@ -15,7 +15,16 @@ Component({
    * 组件的初始数据
    */
   data: {
+    value: 0,
+  },
 
+  observers: {
+    'price': function(price) {
+      price = Number(price) || 0;
+      if (this.data.value != price) {
+        this.setData({value: price});
+      }
+    }
   },
 
   /**
