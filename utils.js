@@ -155,3 +155,12 @@ export function getCurrentPage() {
   const pages = getCurrentPages();
   return pages[pages.length - 1];
 }
+
+export function heAlert(content, options) {
+  const page = getCurrentPage();
+  if (page && page.data._he_page) {
+    options = options || {};
+    options.content = content || options.content || '';
+    page.data._he_page.showAlert(options)
+  }
+}

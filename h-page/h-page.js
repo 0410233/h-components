@@ -23,4 +23,25 @@ Component({
   data: {
 
   },
+
+  lifetimes: {
+    attached() {
+      const page = this.selectOwnerComponent();
+      if (page && !page.data._he_page) {
+        page.setData({_he_page: this});
+      }
+    },
+  },
+
+  methods: {
+    showAlert(options) {
+      const alertBox = this.selectComponent('#he_page_alert');
+      // console.log('alertBox', alertBox)
+      if (alertBox) {
+        return alertBox.show(options);
+      } else {
+        return Promise.reject('找不到组件');
+      }
+    },
+  },
 });

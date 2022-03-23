@@ -2,4 +2,18 @@
 <view wx:if="{{ navbarBorder }}" class="navbar-border"></view>
 <view class="h-page h-page--{{ name || page || '' }}" style="{{ customStyle }}">
   <slot></slot>
+
+  <h-alert id="he_page_alert"></h-alert>
+  <!-- <h-popup
+    visible="{{ alertVisible }}"
+    close-on-click-overlay="{{ false }}"
+    id="he_page_alert"
+  >
+    <view class="he-alert">
+      <view class="he-alert__content">{{ alertContent }}</view>
+      <view class="he-alert__footer">
+        <view class="he-alert__btn" catchtap="alertOk">{{ alertBtnText }}</view>
+      </view>
+    </view>
+  </h-popup> -->
 </view>
