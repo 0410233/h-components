@@ -2,4 +2,5 @@
 <view wx:if="{{ navbarBorder }}" class="navbar-border"></view>
 <view class="h-page h-page--{{ name || page || '' }}" style="{{ customStyle }}">
   <slot></slot>
+  <h-alert id="he_page_alert"></h-alert>
 </view>
