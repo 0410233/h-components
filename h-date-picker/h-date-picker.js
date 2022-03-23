@@ -1,11 +1,11 @@
 // h-components/h-date-picker/h-date-picker.js
 import { formatNumber } from "../utils";
+import { toDate, endOfMonth } from "../time";
 
-const date = new Date();
-const YEAR = 0, MONTH = 1, DAY = 2;
+const today = new Date();
+const thisYear = today.getFullYear();
 
 const years = [];
-const thisYear = date.getFullYear();
 for (let i = 0; i < 80; i++) {
   years.push(thisYear - i);
 }
@@ -16,6 +16,12 @@ for (let i = 1; i <= 12; i++) {
   months.push(formatNumber(i));
 }
 
+const defaultDays = [];
+const endDate = endOfMonth(today).getDate();
+for (let i = 1; i <= endDate; i++) {
+  defaultDays.push(formatNumber(i));
+}
+
 Component({
   /**
    * 组件的属性列表
@@ -24,26 +30,31 @@ Component({
     value: String,
   },
 
-  observers: {
-    'value': function() {
-      this.update();
-    }
-  },
-
   /**
    * 组件的初始数据
    */
   data: {
-    date: [years.length-1, date.getMonth(), date.getDate()-1],
+    columns: [years.length-1, today.getMonth(), today.getDate()-1],
     years: years,
     months: months,
-    days: [],
+    days: defaultDays,
     _currentDate: null,
+    _timer: null,
+  },
+
+  observers: {
+    'value': function(value) {
+      // console.log('value', value)
+      // console.log('_currentDate', this.data._currentDate)
+      if (value != this.data._currentDate) {
+        this.update();
+      }
+    }
   },
 
   lifetimes: {
     attached() {
-      if (this.properties.value) {
+      if (!this.properties.value) {
         this.update();
       }
     },
@@ -54,19 +65,16 @@ Component({
    */
   methods: {
     onDateChange(e) {
-      this.changeDate(e.detail.value).then(date => {
-        this.triggerEvent('change', {value: date});
-      });
+      clearTimeout(this.data._timer);
+      const timer = setTimeout(() => {
+        this.changeDate(e.detail.value);
+      }, 200);
+      this.setData({_timer: timer});
     },
 
     update() {
       const value = this.properties.value;
-      if (value === this.data._currentDate) {
-        return;
-      }
-      const date = value 
-        ? new Date(value.replaceAll('-', '/'))
-        : new Date();
+      const date = value ? toDate(value) : new Date();
       
       let year = years.indexOf(date.getFullYear());
       if (year < 0) {
@@ -76,29 +84,33 @@ Component({
       this.changeDate([year, date.getMonth(), date.getDate()-1]);
     },
 
-    changeDate(value) {
-      value = value.slice();
-      const current = new Date(years[value[YEAR]], months[value[MONTH]], 0);
+    changeDate(columns) {
+      columns = columns.slice();
+      const YEAR = 0, MONTH = 1, DAY = 2;
+
+      const current = new Date(years[columns[YEAR]], months[columns[MONTH]], 0);
+      // console.log('current', current)
       const days = [];
       for (let i = 1; i <= current.getDate(); i++) {
         days.push(formatNumber(i));
       }
-      if (value[DAY] > days.length - 1) {
-        value[DAY] = days.length - 1;
+
+      if (columns[DAY] > days.length - 1) {
+        columns[DAY] = days.length - 1;
       }
       const date = ([
-        years[value[YEAR]],
-        months[value[MONTH]],
-        this.data.days[value[DAY]],
+        years[columns[YEAR]],
+        months[columns[MONTH]],
+        days[columns[DAY]],
       ]).join('-');
 
-      return new Promise((resolve) => {
-        this.setData({
-          date: value,
-          days: days,
-          _currentDate: date,
-        }, () => resolve(date));
+      this.setData({
+        columns: columns,
+        days: days,
+        _currentDate: date,
+      }, () => {
+        this.triggerEvent('change', {value: date});
       });
     },
-  }
-})
+  },
+});
