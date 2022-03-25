@@ -1,6 +1,6 @@
 // h-components/h-page-bottom/h-page-bottom.js
 
-import { getSafeAreaInsetBottom, getRect } from "../utils";
+import { getSafeAreaInsetBottom, getRect, addCssUnit } from "../utils";
 
 Component({
   options: {
@@ -15,6 +15,8 @@ Component({
       type: Boolean,
       value: true,
     },
+    height: String,
+    minHeight: String,
   },
 
   /**
@@ -22,7 +24,7 @@ Component({
    */
   data: {
     safeAreaInsetBottom: 0,
-    height: 0,
+    iHeight: 0,
   },
 
   lifetimes: {
@@ -30,12 +32,21 @@ Component({
       this.setData({
         safeAreaInsetBottom: getSafeAreaInsetBottom(),
       });
-      if (this.properties.placeholder) {
-        getRect(this, '.h-page-bottom').then(rect => {
-          this.setData({
-            height: rect.height || 0,
-          })
-        });
+      const props = this.properties;
+      if (props.placeholder) {
+        if (props.height) {
+          this.setData({iHeight: addCssUnit(props.height)});
+        } else {
+          getRect(this, '.h-page-bottom').then(rect => {
+            let height = rect?.height;
+            if (height) {
+              height += 'px';
+            } else {
+              height = addCssUnit(props.minHeight || 98);
+            }
+            this.setData({iHeight: height});
+          });
+        }
       }
     },
   },
