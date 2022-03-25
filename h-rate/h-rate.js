@@ -29,7 +29,7 @@ Component({
     },
     iconSize: {
       type: String,
-      value: '24',
+      value: '36',
     },
     spacing: {
       type: Number,
@@ -42,8 +42,8 @@ Component({
    */
   data: {
     innerValue: 0,
-    width: '24rpx',
-    height: '24rpx',
+    width: '36rpx',
+    height: '36rpx',
   },
 
   observers: {
@@ -55,7 +55,7 @@ Component({
 
     'iconSize': function(size) {
       size = size.split(' ').map(addCssUnit);
-      const width = size[0] || '24rpx';
+      const width = size[0] || '36rpx';
       const height = size[1] || width;
       this.setData({width, height});
     }
