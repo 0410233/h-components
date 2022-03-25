@@ -159,8 +159,10 @@ export function getCurrentPage() {
 export function heAlert(content, options) {
   const page = getCurrentPage();
   if (page && page.data._he_page) {
+    console.log('找到了 _he_page')
     options = options || {};
     options.content = content || options.content || '';
-    page.data._he_page.showAlert(options)
+    return page.data._he_page.showAlert(options);
   }
+  return Promise.reject(false);
 }
