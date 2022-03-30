@@ -81,7 +81,7 @@ export function getAge(birthday) {
 /**
  * 日期开始
  * @param {date} date 
- * @returns {date}
+ * @returns {Date}
  */
 export function startOfDay(date) {
   date = toDate(date);
@@ -92,7 +92,7 @@ export function startOfDay(date) {
 /**
  * 日期结束
  * @param {date} date 
- * @returns {date}
+ * @returns {Date}
  */
 export function endOfDay(date) {
   date = toDate(date);
@@ -103,7 +103,7 @@ export function endOfDay(date) {
 /**
  * 第二天开始
  * @param {date} date 
- * @returns {date}
+ * @returns {Date}
  */
 export function nextDay(date) {
   date = toDate(date);
@@ -114,7 +114,7 @@ export function nextDay(date) {
 /**
  * 月份开始
  * @param {date} date 
- * @returns {date}
+ * @returns {Date}
  */
 export function startOfMonth(date) {
   date = toDate(date);
@@ -125,7 +125,7 @@ export function startOfMonth(date) {
 /**
  * 月份结束
  * @param {date} date 
- * @returns {date}
+ * @returns {Date}
  */
 export function endOfMonth(date) {
   date = toDate(date);
@@ -136,12 +136,23 @@ export function endOfMonth(date) {
 /**
  * 下月开始
  * @param {date} date 
- * @returns {date}
+ * @returns {Date}
  */
 export function nextMonth(date) {
   date = toDate(date);
   
   return new Date(date.getFullYear(), date.getMonth()+1, 1);
+}
+
+/**
+ * 下月开始
+ * @param {date} date 
+ * @returns {Date}
+ */
+export function prevMonth(date) {
+  date = toDate(date);
+  
+  return new Date(date.getFullYear(), date.getMonth()-1, 1);
 }
 
 /**
