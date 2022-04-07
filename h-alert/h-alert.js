@@ -17,6 +17,7 @@ Component({
       type: Boolean,
       value: false,
     },
+    zIndex: Number,
   },
 
   /**
@@ -27,13 +28,21 @@ Component({
     isVisible: false,
     iBtnText: '确定',
     iContent: '',
+    iPopupStyle: '',
 
     callbacks: [],
   },
 
   observers: {
-    'visible,content,btnText': function() {
+    'visible,content,btnText,zIndex': function() {
       this.update();
+    },
+
+    'zIndex': function(zIndex) {
+      if (!this.data._isUseInJs && zIndex > 0) {
+        const iPopupStyle = 'z-index:' + zIndex;
+        this.setData({iPopupStyle});
+      }
     },
   },
 
@@ -56,6 +65,9 @@ Component({
         change.iContent = props.content;
       }
       if (data.iBtnText !== props.btnText) {
+        change.iBtnText = props.btnText;
+      }
+      if (data.zIndex !== props.btnText) {
         change.iBtnText = props.btnText;
       }
       this.setData(change);
@@ -97,12 +109,19 @@ Component({
      */
     show(options) {
       options = options || {};
-      this.setData({
+      
+      const data = {
         _isUseInJs: true,
         isVisible: true,
         iBtnText: options.btnText || '确定',
         iContent: options.content || '',
-      });
+      };
+
+      if (options.zIndex > 0) {
+        data.iPopupStyle = 'z-index:' + options.zIndex;
+      }
+
+      this.setData(data);
       return new Promise(resolve => {
         this.handleHide(resolve);
       });

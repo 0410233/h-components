@@ -1,5 +1,5 @@
 <!--h-components/h-alert/h-alert.wxml-->
-<h-popup visible="{{ isVisible }}" close-on-click-overlay="{{ false }}">
+<h-popup visible="{{ isVisible }}" close-on-click-overlay="{{ false }}" custom-style="{{ iPopupStyle }}">
   <view class="h-alert">
     <view wx:if="{{ iContent }}" class="h-alert__content">{{ iContent }}</view>
     <view wx:else class="h-alert__content"><slot></slot></view>
