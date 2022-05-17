@@ -3,4 +3,5 @@
 <view class="h-page h-page--{{ name || page || '' }}" style="{{ customStyle }}">
   <slot></slot>
   <h-alert id="he_page_alert"></h-alert>
+  <h-confirm id="he_page_confirm"></h-confirm>
 </view>

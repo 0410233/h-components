@@ -1,0 +1,11 @@
+<!--h-components/h-confirm/h-confirm.wxml-->
+<h-popup visible="{{ isVisible }}" close-on-click-overlay="{{ false }}" custom-style="{{ iPopupStyle }}">
+  <view class="h-confirm">
+    <view wx:if="{{ iContent }}" class="h-confirm__content">{{ iContent }}</view>
+    <view wx:else class="h-confirm__content"><slot></slot></view>
+    <view class="h-confirm__buttons">
+      <view class="h-confirm__cancel" catchtap="confirm">{{ iCancelText }}</view>
+      <view class="h-confirm__confirm" catchtap="cancel">{{ iConfirmText }}</view>
+    </view>
+  </view>
+</h-popup>

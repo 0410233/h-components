@@ -1,0 +1,44 @@
+/* h-components/h-confirm/h-confirm.wxss */
+
+.h-confirm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 562rpx;
+  min-height: 0;
+  padding: 32rpx;
+  box-sizing: border-box;
+  border-radius: 16rpx;
+  font-size: 28rpx;
+  background: #ffffff;
+}
+
+.h-confirm__buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 54rpx;
+}
+
+.h-confirm__confirm,
+.h-confirm__cancel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 154rpx;
+  height: 60rpx;
+  margin: 0 12rpx;
+  padding: 0 30rpx;
+  border-radius: 30rpx;
+  box-sizing: border-box;
+}
+
+.h-confirm__confirm {
+  background: #87CEF6;
+  color: #ffffff;
+}
+
+.h-confirm__cancel {
+  background: #ffffff;
+  color: #666666;
+  border: 1px solid #e3e3e3;
+}

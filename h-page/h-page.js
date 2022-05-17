@@ -43,5 +43,14 @@ Component({
         return Promise.reject('找不到组件');
       }
     },
+
+    showConfirm(options) {
+      const confirmBox = this.selectComponent('#he_page_confirm');
+      if (confirmBox) {
+        return confirmBox.show(options);
+      } else {
+        return Promise.reject('找不到组件');
+      }
+    },
   },
 });
