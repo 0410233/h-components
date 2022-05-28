@@ -4,8 +4,8 @@
     <view wx:if="{{ iContent }}" class="h-confirm__content">{{ iContent }}</view>
     <view wx:else class="h-confirm__content"><slot></slot></view>
     <view class="h-confirm__buttons">
-      <view class="h-confirm__cancel" catchtap="confirm">{{ iCancelText }}</view>
-      <view class="h-confirm__confirm" catchtap="cancel">{{ iConfirmText }}</view>
+      <view class="h-confirm__cancel" catchtap="cancel">{{ iCancelText }}</view>
+      <view class="h-confirm__confirm" catchtap="confirm">{{ iConfirmText }}</view>
     </view>
   </view>
 </h-popup>
